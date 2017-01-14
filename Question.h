@@ -1,9 +1,11 @@
 #pragma once
-
 #include <string>
+#include <iostream>
 #include <vector>
+
 class Question
 {
+	friend class QuestionManager;
 public:
 	Question();
 	Question(std::string &t_topic, std::string &t_content, std::vector<std::string> t_availableAnswers);
@@ -12,9 +14,11 @@ public:
 	std::string getTopic() const;
 	std::string getContent() const;
 	std::string getAnswer() const;
+	std::string getAvailableAnswerById(int t_id) const;
 
-	bool isAvailableAnswers() const;
-	bool isAnswered() const;
+	void setAnswer(std::string t_answer);
+	bool isAnswered() const;//ever used?
+
 
 private:
 	std::string m_topic;
