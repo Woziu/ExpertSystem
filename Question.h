@@ -7,27 +7,22 @@ class Question
 {
 	friend class QuestionManager;
 public:
-	Question();
 	Question(std::string &t_topic, std::string &t_content, std::vector<std::string> t_availableAnswers);
 	~Question();
 
-	std::string getTopic() const;
-	std::string getContent() const;
-	std::string getAnswer() const;
-	std::string getAvailableAnswerById(int t_id) const;
-
-	void setAnswer(std::string t_answer);
-	bool isAnswered() const;//ever used?
-
+	std::string getTopic() const;//returns topic
+	std::string getContent() const;//returns question text
+	std::string getAnswer() const;//returns selected answer
+	
+	void setAnswer(std::string t_answer);//sets answer
+	void setTopic(std::string t_topic);//sets topic
+	void setContent(std::string t_content);//sets topic
 
 private:
-	std::string m_topic;
-	std::string m_content;
-	std::string m_answer;
-
-	std::vector <std::string> m_availableAnswers;
-
-	bool m_answered{ false };
-
+	void printSelectedAnswer();//prints selected answer
+	std::string m_topic;//stores topic
+	std::string m_content;//stores the actual question
+	std::string m_answer;//stores answer if answered
+	std::vector <std::string> m_availableAnswers;//stores available answers
 };
 

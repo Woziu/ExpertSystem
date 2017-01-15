@@ -3,31 +3,26 @@
 class QuestionManager
 {
 public:
-	Question getElementById(int t_id);//ever used?
-
-	void addElement(Question &t_question);
-	void printQuestion();
-	void printAnswers();
-	void fetchUserAnswer();
-	void askQuestion();
-	
-	void checkResult();//put all rulles here
-	bool isResultFound()  const;
-	void printResult();
-	std::string getCurrentQuestionTopic() const;
-	//todo
-	void selectNextQuestionByTopic(std::string t_topic);//put here code to skip questions
-	void skipToQuestion(std::string t_topic);
-
+	void addElement(Question &t_question);//adds question to m_questionVector
+	void fetchUserAnswer();//checks if user input is valid
+	void askQuestion();//prints both question and answers
+	void checkResult();//system`s "brain"
+	void printResult();//prints language as result from m_resultText
+	bool isResultFound()  const;//returns if system found result
 
 	QuestionManager();
 	~QuestionManager();
 private:
-	void setAnswer(int t_answerId);
-	int m_currentQuestion;
-	bool m_resultFound;
-	std::string m_resultText;
-	std::vector<Question> m_questionVector;
+	void selectNextQuestionByTopic(std::string t_topic);//sets next question by its topic
+	std::string getCurrentQuestionTopic() const;//returns topic of current question
+	void printQuestion();//prints current question
+	void printAnswers();//prints available answers for current question
+	void setAnswer(int t_answerId);//sets question asnwer as std::string by answer`s id
+
+	int m_currentQuestion;//stores current question id
+	bool m_resultFound;//stores boolean value if result was found by system
+	std::string m_resultText;//stores information about language selected by system
+	std::vector<Question> m_questionVector;//stores question objects
 
 };
 

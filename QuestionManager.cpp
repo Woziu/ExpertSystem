@@ -2,19 +2,13 @@
 
 QuestionManager::QuestionManager()
 {
-	m_currentQuestion = 9;
+	m_currentQuestion = 0;
 	m_resultFound = false;
 }
 
 void QuestionManager::addElement(Question &t_question)
 {
 	m_questionVector.push_back(t_question);
-	printf("Question added to manager\n");
-}
-
-Question QuestionManager::getElementById(int t_id)
-{
-	return m_questionVector[t_id];
 }
 
 void QuestionManager::printQuestion()
@@ -25,6 +19,7 @@ void QuestionManager::printQuestion()
 void QuestionManager::printAnswers()
 {
 	int i = 1;
+	//loop through available answers and print them with corresponding numbers
 	for (auto it = m_questionVector[m_currentQuestion].m_availableAnswers.begin(); 
 		it != m_questionVector[m_currentQuestion].m_availableAnswers.end(); it++)
 	{
@@ -44,17 +39,22 @@ void QuestionManager::fetchUserAnswer()
 	int userAnswer = 0;
 	int answersAmonut = m_questionVector[m_currentQuestion].m_availableAnswers.size();
 	std::cin >> userAnswer;
+	//loop until user select available answer
 	while (userAnswer < 1 || userAnswer > answersAmonut)
 	{
 		std::cout << "Wrong answer! You can select only numbers 1-" << answersAmonut << std::endl;
 		printAnswers();
 		std::cin >> userAnswer;
 	}
+	//set current question answer
 	setAnswer(userAnswer);
+	//print answer selected by user
+	m_questionVector[m_currentQuestion].printSelectedAnswer();
 }
 
 void QuestionManager::setAnswer(int t_answerId)
 {
+	//decrease id by 1 since 0 is first available answer id
 	std::string userAnswer = m_questionVector[m_currentQuestion].m_availableAnswers[t_answerId - 1];
 	m_questionVector[m_currentQuestion].setAnswer(userAnswer);
 }
@@ -62,6 +62,7 @@ void QuestionManager::setAnswer(int t_answerId)
 void QuestionManager::checkResult()
 {
 	std::string lastAnserw = m_questionVector[m_currentQuestion].getAnswer();
+	//with given answer check if result is found or system should ask next question
 	if (getCurrentQuestionTopic() == "purpose")
 	{
 		if (lastAnserw == "For my kids")
@@ -309,6 +310,7 @@ void QuestionManager::checkResult()
 void QuestionManager::selectNextQuestionByTopic(std::string t_topic)
 {
 	int i = 0;
+	//iterate through questions and set question as current question by its topic 
 	for (auto it = m_questionVector.begin(); it != m_questionVector.end(); it++)
 	{
 		if (it->getTopic() == t_topic)
@@ -338,5 +340,6 @@ bool QuestionManager::isResultFound() const
 
 QuestionManager::~QuestionManager()
 {
+	m_questionVector.clear();
 }
 
