@@ -1,12 +1,14 @@
 #pragma once
 #include "Question.h"
+#include "Answer.h"
 class QuestionManager
 {
 public:
-	void addElement(Question &t_question);//adds question to m_questionVector
-	void fetchUserAnswer();//checks if user input is valid
+	void addQuestion(Question &t_question);//adds question to m_questionVector
+	Question &getQuestionByTopic(std::string t_topic);;//returns reference to Question by its topic
+	void validateUserAnswer();//checks if user input is valid
 	void askQuestion();//prints both question and answers
-	void checkResult();//system`s "brain"
+	void checkResult();//check if resault is found or select next question
 	void printResult();//prints language as result from m_resultText
 	bool isResultFound()  const;//returns if system found result
 

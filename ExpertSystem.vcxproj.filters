@@ -24,12 +24,18 @@
     <ClCompile Include="QuestionManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Answer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Question.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="QuestionManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Answer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

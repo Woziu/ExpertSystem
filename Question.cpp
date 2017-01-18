@@ -1,9 +1,9 @@
 #include "Question.h"
 
-Question::Question(std::string &t_topic, std::string &t_content, std::vector<std::string> t_availableAnswers)
+Question::Question(std::string &t_topic, std::string &t_content)
 :m_topic(t_topic), m_content(t_content)
 {
-	m_availableAnswers = t_availableAnswers;
+
 }
 
 std::string Question::getContent() const
@@ -38,10 +38,14 @@ void Question::setContent(std::string t_content)
 
 void Question::printSelectedAnswer()
 {
-	std::cout << "User answer is: " << m_answer << std::endl;
+	std::cout << std::endl << "User answer is: " << m_answer << std::endl;
 }
+
+void Question::addAnswer(Answer &&t_answer)
+{
+	m_availableAnswers.push_back(t_answer);
+} 
 
 Question::~Question()
 {
-	m_availableAnswers.clear();
 }
